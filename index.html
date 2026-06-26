@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Revaldi Alzikri — Network Support J&T Cargo Padang</title>
+  <title>Portofolio Revaldi Alzikri</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -708,29 +708,83 @@ Based in West Sumatra — building work that connects process, people, and perfo
     <div class="vert-line"></div>
   </section>
 
-  <!-- SOCIAL BAR -->
-  <div class="social-bar">
-    <div class="social-tabs">
-      <span class="social-label">Social</span>
-      <button class="tab-btn active" onclick="switchTab(this)">Instagram</button>
-      <button class="tab-btn" onclick="switchTab(this)">Linkedin</button>
-      <button class="tab-btn" onclick="switchTab(this)">Gmail</button>
-    </div>
-    <div class="social-feed" id="social-feed">
-      <div class="feed-item">
-        <p class="feed-meta"><strong>@Valthermop</strong> · 10 min</p>
-        <p class="feed-text">connect with me in instagram to know more about me in social life</p>
-      </div>
-      <div class="feed-item">
-        <p class="feed-meta"><strong>Revaldi Alzikri</strong> · 45 min</p>
-        <p class="feed-text">Lets connect with me in linkedin to know about my workk experience!</p>
-      </div>
-      <div class="feed-item">
-        <p class="feed-meta"><strong>revaldialzikri2405@gmail.com</strong> · 2 hr</p>
-        <p class="feed-text">connect in chat with me via gmail.i will reply as soon as possible</p>
-      </div>
-    </div>
+ <!-- SOCIAL BAR -->
+<div class="social-bar">
+  <div class="social-tabs">
+    <span class="social-label">Social</span>
+
+    <button class="tab-btn active" onclick="switchTab(this, 'instagram')">
+      Instagram
+    </button>
+
+    <button class="tab-btn" onclick="switchTab(this, 'linkedin')">
+      LinkedIn
+    </button>
+
+    <button class="tab-btn" onclick="switchTab(this, 'gmail')">
+      Gmail
+    </button>
+
+    <button class="tab-btn" onclick="switchTab(this, 'whatsapp')">
+      WhatsApp
+    </button>
   </div>
+
+  <div class="social-feed" id="social-feed">
+
+    <div class="feed-item active" data-platform="instagram">
+      <p class="feed-meta"><strong>@valthermop</strong> · Instagram</p>
+      <p class="feed-text">
+        Connect with me on Instagram to know more about my social life.
+      </p>
+      <a 
+        href="https://www.instagram.com/valthermop" 
+        target="_blank" 
+        class="feed-link">
+        Visit Instagram
+      </a>
+    </div>
+
+    <div class="feed-item" data-platform="linkedin">
+      <p class="feed-meta"><strong>Revaldi Alzikri</strong> · LinkedIn</p>
+      <p class="feed-text">
+        Let's connect on LinkedIn to explore my work experience and professional journey.
+      </p>
+      <a 
+        href="https://www.linkedin.com/in/revaldialzikri" 
+        target="_blank" 
+        class="feed-link">
+        Visit LinkedIn
+      </a>
+    </div>
+
+    <div class="feed-item" data-platform="gmail">
+      <p class="feed-meta"><strong>revaldialzikri2405@gmail.com</strong> · Gmail</p>
+      <p class="feed-text">
+        Reach me by email. I will reply as soon as possible.
+      </p>
+      <a 
+        href="mailto:revaldialzikri2405@gmail.com" 
+        class="feed-link">
+        Send Email
+      </a>
+    </div>
+
+    <div class="feed-item" data-platform="whatsapp">
+      <p class="feed-meta"><strong>Revaldi Alzikri</strong> · WhatsApp</p>
+      <p class="feed-text">
+        Chat with me directly through WhatsApp for quick communication.
+      </p>
+      <a 
+        href="https://wa.me/6287765329174" 
+        target="_blank" 
+        class="feed-link">
+        Chat on WhatsApp
+      </a>
+    </div>
+
+  </div>
+</div>
 
   <!-- ABOUT -->
   <section id="about">
@@ -798,7 +852,7 @@ Based in West Sumatra — building work that connects process, people, and perfo
         Have a project in mind? I'm open to freelance, collaborations, and full-time opportunities.
         Drop me a message and let's make something great.
       </p>
-      <a href="Gmail: revaldialzikri2405@gmail.com" class="btn-primary">Say hello</a>
+      <a href="mailto:revaldialzikri2405@gmail.com" class="btn-primary">Say hello</a>
     </div>
   </section>
 
@@ -806,10 +860,10 @@ Based in West Sumatra — building work that connects process, people, and perfo
   <footer>
     <p class="footer-copy">© 2026 Revaldi Alzikri. All rights reserved.</p>
     <div class="footer-social">
-      <a href="#">Linkedin: www.linkedin.com/in/revaldialzikri</a>
-      <a href="#">Instagram</a>
-      <a href="#">Gmail</a>
-      <a href="#">WhatsApp</a>
+      <a href="https://www.linkedin.com/in/revaldialzikri">Linkedin</a>
+      <a href="https://www.instagram.com/valthermop">Instagram</a>
+      <a href="mailto:revaldialzikri2405@gmail.com">Gmail</a>
+      <a href="https://wa.me/6287765329174">WhatsApp</a>
     </div>
   </footer>
 
