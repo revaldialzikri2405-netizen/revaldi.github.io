@@ -3,161 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portofolio Revaldi Alzikri</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <title>Revaldi Alzikri — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Black & Blue Navy Lightning palette */
-      --bg:       #040508;
-      --bg2:      #070a12;
-      --navy:     #0b1120;
-      --navy2:    #0e1628;
-      --accent:   #3b82f6;      /* electric blue lightning */
-      --accent2:  #60a5fa;
-      --accent3:  #1d4ed8;
-      --glow:     rgba(59,130,246,0.18);
-      --glow2:    rgba(29,78,216,0.10);
-      --text:     #e8eeff;
-      --muted:    #5a6a8a;
-      --muted2:   #8899bb;
-      --border:   rgba(59,130,246,0.10);
-      --border2:  rgba(255,255,255,0.05);
-      --card:     rgba(11,17,32,0.8);
+      --bg:      #020408;
+      --navy:    #060d1a;
+      --navy2:   #0a1428;
+      --blue:    #2563eb;
+      --blue2:   #3b82f6;
+      --blue3:   #60a5fa;
+      --blue4:   #93c5fd;
+      --text:    #dde6ff;
+      --muted:   #4a5f85;
+      --muted2:  #7a90bb;
+      --border:  rgba(37,99,235,0.12);
+      --border2: rgba(255,255,255,0.04);
+      --card:    rgba(6,13,26,0.85);
     }
 
+    /* ── BASE: NO SCROLL ── */
     html, body {
-      height: 100%;
-      overflow: hidden; /* NO SCROLL — navigation only */
+      height: 100%; overflow: hidden;
       background: var(--bg);
       color: var(--text);
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── LIGHTNING BACKGROUND ── */
-    .bg-layer {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+    /* ── BACKGROUND ── */
+    .bg-scene {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .bg-scene::before {
+      content: '';
+      position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 70% 0%, rgba(59,130,246,0.13) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 50% at 20% 100%, rgba(29,78,216,0.10) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(11,17,32,0.6) 0%, transparent 100%);
+        radial-gradient(ellipse 90% 70% at 75% -10%, rgba(37,99,235,0.14) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 60% at 10% 110%, rgba(29,78,216,0.10) 0%, transparent 60%),
+        linear-gradient(180deg, #020408 0%, #04080f 50%, #020408 100%);
+    }
+    /* grid texture */
+    .bg-scene::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
     }
 
-    /* animated lightning bolt streak */
-    .lightning {
-      position: fixed;
-      pointer-events: none;
-      z-index: 0;
+    /* lightning streaks */
+    .bolt {
+      position: fixed; pointer-events: none; z-index: 0;
       opacity: 0;
     }
-    .lightning-1 {
-      top: 0; right: 18%;
-      width: 1px; height: 60vh;
-      background: linear-gradient(to bottom, transparent, rgba(59,130,246,0.5), rgba(96,165,250,0.8), rgba(59,130,246,0.3), transparent);
-      animation: flash 8s ease-in-out infinite;
-      animation-delay: 0s;
+    .bolt-1 {
+      top: 0; right: 20%; width: 1px; height: 55vh;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(59,130,246,0.0) 10%,
+        rgba(147,197,253,0.7) 40%,
+        rgba(59,130,246,0.9) 55%,
+        rgba(37,99,235,0.4) 75%,
+        transparent 100%);
+      animation: bolt-flash 9s ease-in-out infinite 0s;
     }
-    .lightning-2 {
-      top: 0; right: 22%;
-      width: 1px; height: 40vh;
-      background: linear-gradient(to bottom, transparent, rgba(147,197,253,0.4), rgba(59,130,246,0.6), transparent);
-      animation: flash 8s ease-in-out infinite;
-      animation-delay: 0.08s;
+    .bolt-2 {
+      top: 0; right: 23.5%; width: 1px; height: 35vh;
+      background: linear-gradient(to bottom,
+        transparent, rgba(147,197,253,0.4) 40%,
+        rgba(59,130,246,0.6) 60%, transparent);
+      animation: bolt-flash 9s ease-in-out infinite 0.09s;
     }
-    .lightning-3 {
-      top: 0; left: 12%;
-      width: 1px; height: 35vh;
-      background: linear-gradient(to bottom, transparent, rgba(59,130,246,0.3), rgba(96,165,250,0.5), transparent);
-      animation: flash 12s ease-in-out infinite;
-      animation-delay: 3s;
+    .bolt-3 {
+      top: 0; left: 14%; width: 1px; height: 30vh;
+      background: linear-gradient(to bottom,
+        transparent, rgba(59,130,246,0.5) 50%, transparent);
+      animation: bolt-flash 14s ease-in-out infinite 4s;
     }
-    @keyframes flash {
-      0%, 88%, 100% { opacity: 0; }
-      90% { opacity: 1; }
-      91% { opacity: 0.2; }
-      92% { opacity: 0.9; }
-      95% { opacity: 0; }
+    @keyframes bolt-flash {
+      0%,85%,100% { opacity: 0; }
+      87%  { opacity: 1; }
+      88%  { opacity: 0.1; }
+      89%  { opacity: 0.95; }
+      93%  { opacity: 0; }
     }
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
       height: 68px;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 4rem;
-      background: rgba(4,5,8,0.90);
-      backdrop-filter: blur(20px);
+      background: rgba(2,4,8,0.92);
+      backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 17px; font-weight: 700; color: var(--text);
+      font-size: 16px; font-weight: 700; color: var(--text);
       letter-spacing: 0.5px;
       display: flex; align-items: center; gap: 10px;
+      user-select: none;
     }
-    .nav-logo-dot {
+    .logo-pip {
       width: 7px; height: 7px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 10px var(--accent);
-      animation: pulse-dot 3s ease-in-out infinite;
+      background: var(--blue2);
+      box-shadow: 0 0 12px var(--blue2);
+      animation: pip-pulse 3s ease-in-out infinite;
     }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--accent); }
-      50% { opacity: 0.5; box-shadow: 0 0 18px var(--accent2); }
+    @keyframes pip-pulse {
+      0%,100% { box-shadow: 0 0 8px var(--blue2); opacity: 1; }
+      50%      { box-shadow: 0 0 22px var(--blue3); opacity: 0.6; }
     }
 
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links { display: flex; gap: 2.8rem; list-style: none; }
     .nav-links button {
-      font: 500 11px/1 'Inter', sans-serif;
+      font: 500 10.5px/1 'Inter', sans-serif;
       letter-spacing: 2.5px; text-transform: uppercase;
       color: var(--muted); background: none; border: none;
-      cursor: pointer; position: relative; padding: 6px 0;
+      cursor: pointer; padding: 6px 0; position: relative;
       transition: color 0.25s;
     }
     .nav-links button:hover { color: var(--text); }
-    .nav-links button.active { color: var(--accent2); }
+    .nav-links button.active { color: var(--blue3); }
     .nav-links button.active::after {
       content: '';
-      position: absolute; bottom: -2px; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      position: absolute; bottom: -1px; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue2) 50%, transparent);
     }
 
     .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span {
-      display: block; width: 20px; height: 1px;
-      background: var(--muted2); transition: background 0.2s;
-    }
+    .hamburger span { display: block; width: 20px; height: 1px; background: var(--muted2); transition: 0.2s; }
     .hamburger:hover span { background: var(--text); }
 
     /* ── PAGE SYSTEM ── */
     .pages {
-      position: fixed;
-      top: 68px; left: 0; right: 0; bottom: 0;
-      overflow: hidden; z-index: 1;
+      position: fixed; top: 68px; left: 0; right: 0; bottom: 0;
+      z-index: 1; overflow: hidden;
     }
     .page {
       position: absolute; inset: 0;
       opacity: 0; pointer-events: none;
-      transform: translateY(24px);
-      transition: opacity 0.45s cubic-bezier(.4,0,.2,1), transform 0.45s cubic-bezier(.4,0,.2,1);
+      transform: translateY(22px);
+      transition: opacity 0.45s cubic-bezier(.25,.8,.25,1),
+                  transform 0.45s cubic-bezier(.25,.8,.25,1);
       overflow-y: auto;
       scrollbar-width: thin;
       scrollbar-color: rgba(59,130,246,0.2) transparent;
     }
-    .page.active {
-      opacity: 1; pointer-events: all; transform: translateY(0);
-    }
+    .page.active { opacity: 1; pointer-events: all; transform: translateY(0); }
 
     /* ── PAGE DOTS ── */
     .pg-dots {
-      position: fixed; right: 1.8rem; top: 50%; transform: translateY(-50%);
-      display: flex; flex-direction: column; gap: 12px; z-index: 300;
+      position: fixed; right: 1.6rem; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 14px; z-index: 400;
     }
     .pg-dot {
       width: 5px; height: 5px; border-radius: 50%;
@@ -165,23 +170,25 @@
       transition: all 0.3s; position: relative;
     }
     .pg-dot.active {
-      background: var(--accent);
-      box-shadow: 0 0 10px var(--accent2);
-      transform: scale(1.6);
+      background: var(--blue2);
+      box-shadow: 0 0 12px var(--blue3);
+      transform: scale(1.7);
     }
-    .pg-dot::after {
+    .pg-dot::before {
       content: attr(data-label);
       position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
-      font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--muted); white-space: nowrap; opacity: 0;
-      transition: opacity 0.2s;
+      font: 500 9px/1 'Inter', sans-serif;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--muted); white-space: nowrap;
+      opacity: 0; transition: opacity 0.2s; pointer-events: none;
     }
-    .pg-dot:hover::after { opacity: 1; }
+    .pg-dot:hover::before { opacity: 1; }
 
-    /* ── HOME ── */
-    #page-home {
-      display: flex; flex-direction: column;
-    }
+    /* ────────────────────────
+       HOME PAGE
+    ──────────────────────── */
+    #page-home { display: flex; flex-direction: column; }
+
     .home-main {
       flex: 1; min-height: 0;
       display: grid; grid-template-columns: 1fr 1fr;
@@ -191,395 +198,483 @@
       position: relative;
     }
 
-    /* hero left */
-    .hero-available {
+    /* ─ hero left ─ */
+    .available-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--accent2); margin-bottom: 1.5rem;
+      font: 500 9.5px/1 'Inter', sans-serif;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--blue3); margin-bottom: 1.6rem;
     }
     .avail-dot {
       width: 6px; height: 6px; border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 8px #22c55e;
-      animation: blink 2s ease-in-out infinite;
+      background: #22c55e; box-shadow: 0 0 8px #22c55e;
+      animation: blink-dot 2s ease-in-out infinite;
     }
-    @keyframes blink {
-      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    @keyframes blink-dot {
+      0%,100% { opacity: 1; } 50% { opacity: 0.35; }
     }
 
     h1.hero-name {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 5vw, 5rem);
-      font-weight: 900; line-height: 0.95;
-      letter-spacing: -2px; color: var(--text);
-      margin-bottom: 0.4rem;
+      font-size: clamp(2.8rem, 4.8vw, 4.8rem);
+      font-weight: 900; line-height: 0.93;
+      letter-spacing: -2.5px; color: var(--text);
+      margin-bottom: 0.5rem;
     }
-    h1.hero-name span {
+    h1.hero-name .name-accent {
       display: block;
-      background: linear-gradient(135deg, #e8eeff 0%, var(--accent2) 60%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background: linear-gradient(120deg, #dde6ff 0%, var(--blue3) 55%, var(--blue2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
     .hero-role {
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--muted2); margin-bottom: 1.8rem;
-      display: flex; align-items: center; gap: 10px;
+      font: 400 10.5px/1 'Inter', sans-serif;
+      letter-spacing: 3.5px; text-transform: uppercase;
+      color: var(--muted2); margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 12px;
     }
-    .hero-role::before {
-      content: '';
+    .role-line {
       width: 28px; height: 1px;
-      background: linear-gradient(90deg, var(--accent), transparent);
+      background: linear-gradient(90deg, var(--blue2), transparent);
     }
 
     .hero-desc {
-      font-size: 14px; color: var(--muted2); line-height: 1.85;
-      max-width: 360px; margin-bottom: 2.2rem;
-      border-left: 2px solid rgba(59,130,246,0.3);
-      padding-left: 1rem;
+      font-size: 13.5px; color: var(--muted2); line-height: 1.9;
+      max-width: 350px; margin-bottom: 2.2rem;
+      padding-left: 14px;
+      border-left: 2px solid rgba(59,130,246,0.35);
     }
 
     .btn-contact {
-      font: 600 10px/1 'Inter', sans-serif;
-      letter-spacing: 2.5px; text-transform: uppercase;
-      padding: 13px 30px;
-      border: 1px solid rgba(59,130,246,0.4);
-      color: var(--accent2); background: rgba(59,130,246,0.06);
-      cursor: pointer; transition: all 0.3s;
-      position: relative; overflow: hidden;
+      font: 600 9.5px/1 'Inter', sans-serif;
+      letter-spacing: 3px; text-transform: uppercase;
+      padding: 13px 32px;
+      border: 1px solid rgba(59,130,246,0.35);
+      color: var(--blue3); background: rgba(37,99,235,0.07);
+      cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden;
     }
-    .btn-contact::before {
+    .btn-contact::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(29,78,216,0.1));
+      background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(29,78,216,0.08));
       opacity: 0; transition: opacity 0.3s;
     }
-    .btn-contact:hover { border-color: var(--accent); color: #fff; box-shadow: 0 0 20px rgba(59,130,246,0.25); }
-    .btn-contact:hover::before { opacity: 1; }
+    .btn-contact:hover {
+      border-color: var(--blue2); color: #fff;
+      box-shadow: 0 0 24px rgba(59,130,246,0.22);
+    }
+    .btn-contact:hover::after { opacity: 1; }
 
-    /* hero right */
+    /* ─ hero right ─ */
     .hero-right {
-      display: flex; align-items: center; justify-content: center; position: relative;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
     }
+
+    /* photo frame with corner brackets */
     .photo-frame {
-      position: relative; width: 290px; height: 380px;
+      position: relative; width: 280px; height: 370px; flex-shrink: 0;
     }
-    /* corner accents */
-    .photo-frame::before, .photo-frame::after {
-      content: '';
-      position: absolute; width: 30px; height: 30px; z-index: 2;
+    .corner {
+      position: absolute; width: 28px; height: 28px; z-index: 3;
     }
-    .photo-frame::before {
-      top: -8px; left: -8px;
-      border-top: 2px solid var(--accent);
-      border-left: 2px solid var(--accent);
-      box-shadow: -3px -3px 12px rgba(59,130,246,0.3);
-    }
-    .photo-frame::after {
-      bottom: -8px; right: -8px;
-      border-bottom: 2px solid var(--accent);
-      border-right: 2px solid var(--accent);
-      box-shadow: 3px 3px 12px rgba(59,130,246,0.3);
-    }
+    .corner-tl { top: -7px; left: -7px;
+      border-top: 1.5px solid var(--blue2); border-left: 1.5px solid var(--blue2);
+      box-shadow: -2px -2px 10px rgba(59,130,246,0.25); }
+    .corner-tr { top: -7px; right: -7px;
+      border-top: 1.5px solid var(--blue2); border-right: 1.5px solid var(--blue2);
+      box-shadow: 2px -2px 10px rgba(59,130,246,0.25); }
+    .corner-bl { bottom: -7px; left: -7px;
+      border-bottom: 1.5px solid var(--blue2); border-left: 1.5px solid var(--blue2);
+      box-shadow: -2px 2px 10px rgba(59,130,246,0.25); }
+    .corner-br { bottom: -7px; right: -7px;
+      border-bottom: 1.5px solid var(--blue2); border-right: 1.5px solid var(--blue2);
+      box-shadow: 2px 2px 10px rgba(59,130,246,0.25); }
+
     .photo-inner {
-      width: 100%; height: 100%;
-      background: linear-gradient(160deg, #0e1628 0%, #070a12 50%, #0b1120 100%);
+      width: 100%; height: 100%; position: relative; z-index: 1;
+      background: var(--navy2);
       border: 1px solid var(--border);
-      position: relative; overflow: hidden;
+      overflow: hidden;
       display: flex; align-items: center; justify-content: center;
     }
-    /* scan line effect */
+    /* scanline overlay */
     .photo-inner::after {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
       background: repeating-linear-gradient(
-        0deg, transparent, transparent 2px,
-        rgba(59,130,246,0.02) 2px, rgba(59,130,246,0.02) 4px
+        0deg, transparent, transparent 3px,
+        rgba(37,99,235,0.025) 3px, rgba(37,99,235,0.025) 4px
       );
-      pointer-events: none; z-index: 2;
     }
     .photo-inner img {
       width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(0.9) contrast(1.08) saturate(0.85);
-      mix-blend-mode: luminosity;
+      display: block; position: relative; z-index: 1;
+      filter: brightness(0.88) contrast(1.1) saturate(0.75);
+    }
+    .photo-placeholder {
       position: relative; z-index: 1;
     }
-    .photo-placeholder-svg { opacity: 0.15; width: 90px; position: relative; z-index: 1; }
+    .photo-placeholder svg { width: 80px; opacity: 0.12; }
 
-    /* glow under photo */
+    /* glow under frame */
     .photo-glow {
-      position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%);
-      width: 200px; height: 60px;
-      background: radial-gradient(ellipse, rgba(59,130,246,0.25), transparent 70%);
-      filter: blur(10px);
+      position: absolute;
+      bottom: -28px; left: 50%; transform: translateX(-50%);
+      width: 220px; height: 50px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.28) 0%, transparent 70%);
+      filter: blur(12px);
+      z-index: 0;
     }
 
+    /* counter */
     .counter-block {
-      position: absolute; right: -3.5rem; top: 50%; transform: translateY(-50%);
+      position: absolute; right: -3rem; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; align-items: flex-start;
     }
     .counter-num {
-      font-size: 46px; font-weight: 800; line-height: 1;
+      font: 800 44px/1 'Inter', sans-serif;
       color: transparent;
-      -webkit-text-stroke: 1px rgba(59,130,246,0.5);
+      -webkit-text-stroke: 1px rgba(59,130,246,0.45);
+      letter-spacing: -2px;
     }
-    .counter-total { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
-    .view-link {
-      display: block; margin-top: 1.2rem;
-      font: 500 10px/1 'Inter', sans-serif;
+    .counter-sep {
+      font-size: 12px; color: var(--muted); letter-spacing: 1px; margin-top: 2px;
+    }
+    .view-btn {
+      font: 500 9.5px/1 'Inter', sans-serif;
       letter-spacing: 2px; text-transform: uppercase;
-      color: var(--accent2); background: none; border: none; cursor: pointer;
-      transition: color 0.2s;
+      color: var(--blue3); background: none; border: none;
+      cursor: pointer; margin-top: 1.2rem; transition: color 0.2s;
     }
-    .view-link:hover { color: var(--text); }
-    .arr-group { display: flex; gap: 8px; margin-top: 1.4rem; }
+    .view-btn:hover { color: var(--text); }
+    .arr-group { display: flex; gap: 8px; margin-top: 1.3rem; }
     .arr {
       width: 28px; height: 28px;
       border: 1px solid var(--border);
       background: transparent; color: var(--muted);
-      font-size: 15px; cursor: pointer;
+      font-size: 16px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: all 0.25s;
     }
-    .arr:hover { border-color: var(--accent); color: var(--accent2); box-shadow: 0 0 12px rgba(59,130,246,0.2); }
-
-    .vert-rule {
-      position: absolute; right: 0; top: 0; bottom: 0; width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    .arr:hover {
+      border-color: var(--blue2); color: var(--blue3);
+      box-shadow: 0 0 12px rgba(59,130,246,0.18);
     }
 
-    /* ── SOCIAL BAR ── */
+    /* vertical rule */
+    .vert-rule {
+      position: absolute; right: 0; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom,
+        transparent, var(--border) 20%, var(--border) 80%, transparent);
+    }
+
+    /* ─ SOCIAL BAR ─ */
     .social-bar {
       border-top: 1px solid var(--border2);
       padding: 0 4rem;
-      background: rgba(4,5,8,0.7);
+      background: rgba(2,4,8,0.75);
       flex-shrink: 0;
     }
-    .soc-tabs { display: flex; border-bottom: 1px solid var(--border2); }
+    .soc-tabs {
+      display: flex; border-bottom: 1px solid var(--border2);
+      align-items: stretch;
+    }
     .soc-label {
-      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
-      color: var(--muted); display: flex; align-items: center;
-      padding: 0 20px 0 0; margin-right: 8px;
+      font: 400 9.5px/1 'Inter', sans-serif;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center;
+      padding-right: 20px; margin-right: 8px;
+      border-right: 1px solid var(--border2);
     }
     .soc-btn {
-      font: 500 11px/1 'Inter', sans-serif;
+      font: 500 10.5px/1 'Inter', sans-serif;
+      letter-spacing: 0.5px;
       color: var(--muted); background: none; border: none;
       padding: 14px 18px; cursor: pointer; position: relative;
-      transition: color 0.2s; letter-spacing: 0.5px;
+      transition: color 0.2s;
     }
-    .soc-btn.active { color: var(--accent2); }
+    .soc-btn.active { color: var(--blue3); }
     .soc-btn.active::after {
-      content: ''; position: absolute;
-      bottom: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue2) 50%, transparent);
     }
     .soc-btn:hover { color: var(--text); }
 
-    .soc-feed { display: grid; grid-template-columns: repeat(4, 1fr); }
+    /* all 4 columns always visible */
+    .soc-feed {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
     .feed-item {
       padding: 16px 20px 16px 0;
       border-right: 1px solid var(--border2);
-      display: none; /* hidden by default */
+      transition: opacity 0.25s;
     }
     .feed-item:last-child { border-right: none; }
-    .feed-item.active { display: block; }
-    .feed-meta { font-size: 10px; color: var(--muted); margin-bottom: 5px; }
-    .feed-meta strong { color: var(--accent2); font-weight: 500; }
-    .feed-text { font-size: 12px; color: var(--muted2); line-height: 1.6; margin-bottom: 8px; }
-    .feed-link {
-      font: 500 10px/1 'Inter', sans-serif;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--accent); text-decoration: none;
-      transition: color 0.2s;
-      display: inline-flex; align-items: center; gap: 4px;
-    }
-    .feed-link::after { content: '→'; }
-    .feed-link:hover { color: var(--accent2); }
+    .feed-item.dimmed { opacity: 0.35; }
 
-    /* ── ABOUT PAGE ── */
+    .feed-meta { font-size: 10px; color: var(--muted); margin-bottom: 5px; }
+    .feed-meta strong { color: var(--blue3); font-weight: 600; }
+    .feed-text { font-size: 12px; color: var(--muted2); line-height: 1.65; margin-bottom: 9px; }
+    .feed-link {
+      font: 500 9.5px/1 'Inter', sans-serif;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--blue2); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 5px;
+      transition: color 0.2s;
+    }
+    .feed-link:hover { color: var(--blue3); }
+    .feed-link::after { content: '→'; font-size: 11px; }
+
+    /* ────────────────────────
+       ABOUT PAGE
+    ──────────────────────── */
     #page-about {
       display: flex; flex-direction: column; justify-content: center;
       padding: 3rem 4rem;
     }
+
     .eyebrow {
-      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--accent2); margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 10px;
+      font: 500 9.5px/1 'Inter', sans-serif;
+      letter-spacing: 3.5px; text-transform: uppercase;
+      color: var(--blue3); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 12px;
     }
     .eyebrow::before {
       content: '';
       width: 24px; height: 1px;
-      background: linear-gradient(90deg, var(--accent), transparent);
+      background: linear-gradient(90deg, var(--blue2), transparent);
     }
+
     .sec-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3vw, 3rem);
-      font-weight: 700; letter-spacing: -0.5px;
-      color: var(--text); margin-bottom: 2.5rem;
-      max-width: 540px; line-height: 1.15;
+      font-size: clamp(1.8rem, 2.8vw, 2.9rem);
+      font-weight: 700; letter-spacing: -0.5px; line-height: 1.15;
+      color: var(--text); margin-bottom: 2.5rem; max-width: 520px;
     }
+
     .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; }
-    .about-p { font-size: 14px; color: var(--muted2); line-height: 1.9; }
+
+    .about-p { font-size: 13.5px; color: var(--muted2); line-height: 1.9; }
     .about-p + .about-p { margin-top: 1rem; }
 
-    .skills-block { margin-top: 0.5rem; }
-    .skills-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
-    .skill-row {
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 14px;
+    /* skill bars */
+    .skills-block { }
+    .skills-eyebrow {
+      font: 500 9px/1 'Inter', sans-serif;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1.4rem;
     }
-    .skill-name { font-size: 13px; color: var(--text); min-width: 130px; }
+    .skill-row { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .skill-name { font-size: 12.5px; color: var(--text); min-width: 130px; }
     .skill-bar {
-      flex: 1; height: 2px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 2px; overflow: hidden;
+      flex: 1; height: 1.5px;
+      background: rgba(255,255,255,0.05); border-radius: 2px; overflow: visible;
+      position: relative;
     }
     .skill-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent3), var(--accent), var(--accent2));
-      border-radius: 2px;
-      transition: width 0.8s cubic-bezier(.4,0,.2,1);
-      box-shadow: 0 0 8px rgba(59,130,246,0.4);
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, var(--blue) 0%, var(--blue2) 60%, var(--blue3) 100%);
+      box-shadow: 0 0 10px rgba(59,130,246,0.5);
+      position: relative;
+    }
+    .skill-fill::after {
+      content: '';
+      position: absolute; right: -3px; top: 50%; transform: translateY(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--blue3);
+      box-shadow: 0 0 8px var(--blue3);
+    }
+    .skill-pct {
+      font: 400 10px/1 'Inter', sans-serif;
+      color: var(--muted); min-width: 30px; text-align: right;
     }
 
-    /* ── PROJECTS PAGE ── */
+    /* ────────────────────────
+       PROJECTS PAGE
+    ──────────────────────── */
     #page-projects {
       display: flex; flex-direction: column; justify-content: center;
       padding: 3rem 4rem;
     }
+
     .proj-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      margin-top: 0;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border); margin-top: 0;
     }
     .proj-card {
-      background: var(--card); padding: 2rem 1.8rem;
-      transition: background 0.3s;
-      cursor: pointer; position: relative; overflow: hidden;
+      background: var(--card); padding: 2.2rem 2rem;
+      border-right: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      cursor: pointer; transition: background 0.3s;
     }
+    .proj-card:last-child { border-right: none; }
+    /* top glow line on hover */
     .proj-card::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue2) 50%, transparent);
       opacity: 0; transition: opacity 0.3s;
     }
-    .proj-card:hover { background: rgba(11,17,32,0.95); }
-    .proj-card:hover::before { opacity: 1; }
-    .proj-num {
-      font-size: 10px; letter-spacing: 2px; color: var(--accent);
-      margin-bottom: 1.5rem; display: block;
+    /* side glow */
+    .proj-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--blue2), transparent);
+      opacity: 0; transition: opacity 0.3s;
     }
-    .proj-title { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 0.7rem; line-height: 1.2; }
-    .proj-desc { font-size: 12px; color: var(--muted2); line-height: 1.75; margin-bottom: 1.5rem; }
+    .proj-card:hover { background: rgba(10,20,40,0.95); }
+    .proj-card:hover::before,
+    .proj-card:hover::after { opacity: 1; }
+
+    .proj-num {
+      font: 500 9.5px/1 'Inter', sans-serif;
+      letter-spacing: 2.5px; color: var(--blue2); margin-bottom: 1.6rem; display: block;
+    }
+    .proj-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 0.7rem; line-height: 1.25; }
+    .proj-desc { font-size: 12px; color: var(--muted2); line-height: 1.8; margin-bottom: 1.6rem; }
     .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag {
-      font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--accent2);
+      font: 500 8.5px/1 'Inter', sans-serif;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--blue3);
       border: 1px solid rgba(59,130,246,0.2);
       padding: 4px 10px;
-      background: rgba(59,130,246,0.05);
+      background: rgba(37,99,235,0.06);
     }
 
-    /* ── CONTACT PAGE ── */
+    /* ────────────────────────
+       CONTACT PAGE
+    ──────────────────────── */
     #page-contact {
       display: flex; align-items: center; justify-content: center;
       position: relative;
     }
     .contact-bg {
       position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(59,130,246,0.06) 0%, transparent 70%);
+      background: radial-gradient(ellipse 60% 60% at 50% 50%,
+        rgba(37,99,235,0.07) 0%, transparent 70%);
     }
-    .con-inner { max-width: 560px; text-align: center; padding: 2rem; position: relative; z-index: 1; }
-    .con-sub { font-size: 14px; color: var(--muted2); line-height: 1.85; margin-bottom: 2.5rem; }
+    /* subtle concentric rings */
+    .contact-ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(59,130,246,0.06);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      pointer-events: none;
+    }
+    .ring-1 { width: 400px; height: 400px; }
+    .ring-2 { width: 620px; height: 620px; border-color: rgba(59,130,246,0.04); }
+    .ring-3 { width: 840px; height: 840px; border-color: rgba(59,130,246,0.02); }
 
+    .con-inner {
+      max-width: 520px; text-align: center;
+      padding: 2rem; position: relative; z-index: 1;
+    }
+    .con-sub {
+      font-size: 13.5px; color: var(--muted2); line-height: 1.9;
+      margin-bottom: 2.5rem;
+    }
     .btn-filled {
       display: inline-block; padding: 15px 40px;
-      background: linear-gradient(135deg, var(--accent3), var(--accent));
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue2) 100%);
       color: #fff;
-      font: 600 10px/1 'Inter', sans-serif;
+      font: 600 9.5px/1 'Inter', sans-serif;
       letter-spacing: 2.5px; text-transform: uppercase;
       text-decoration: none; border: none; cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 0 24px rgba(59,130,246,0.3);
-      position: relative; overflow: hidden;
+      box-shadow: 0 0 30px rgba(59,130,246,0.3);
+      transition: all 0.3s; position: relative; overflow: hidden;
     }
     .btn-filled::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
+      background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.12) 100%);
       opacity: 0; transition: opacity 0.3s;
     }
-    .btn-filled:hover { box-shadow: 0 0 40px rgba(59,130,246,0.5); transform: translateY(-1px); }
+    .btn-filled:hover { box-shadow: 0 0 50px rgba(59,130,246,0.45); transform: translateY(-2px); }
     .btn-filled:hover::after { opacity: 1; }
 
     .contact-links {
-      display: flex; justify-content: center; gap: 2rem; margin-top: 2.5rem;
+      display: flex; justify-content: center; gap: 2.5rem; margin-top: 2.5rem;
     }
-    .contact-link {
-      font: 500 10px/1 'Inter', sans-serif;
+    .con-link {
+      font: 500 9.5px/1 'Inter', sans-serif;
       letter-spacing: 2px; text-transform: uppercase;
       color: var(--muted2); text-decoration: none;
       transition: color 0.2s; position: relative;
     }
-    .contact-link::after {
+    .con-link::after {
       content: ''; position: absolute;
       bottom: -3px; left: 0; right: 0; height: 1px;
-      background: var(--accent); transform: scaleX(0);
-      transition: transform 0.3s;
+      background: var(--blue2); transform: scaleX(0); transition: transform 0.3s;
     }
-    .contact-link:hover { color: var(--accent2); }
-    .contact-link:hover::after { transform: scaleX(1); }
+    .con-link:hover { color: var(--blue3); }
+    .con-link:hover::after { transform: scaleX(1); }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .page.active .anim { animation: fadeUp 0.6s cubic-bezier(.4,0,.2,1) both; }
-    .page.active .a1 { animation-delay: 0.05s; }
-    .page.active .a2 { animation-delay: 0.12s; }
-    .page.active .a3 { animation-delay: 0.20s; }
-    .page.active .a4 { animation-delay: 0.28s; }
-    .page.active .a5 { animation-delay: 0.36s; }
-    .page.active .a6 { animation-delay: 0.44s; }
+    .page.active .anim { animation: fadeUp 0.55s cubic-bezier(.25,.8,.25,1) both; }
+    .a1 { animation-delay: 0.05s; }
+    .a2 { animation-delay: 0.13s; }
+    .a3 { animation-delay: 0.21s; }
+    .a4 { animation-delay: 0.29s; }
+    .a5 { animation-delay: 0.37s; }
+    .a6 { animation-delay: 0.45s; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
       nav { padding: 0 1.5rem; }
       .nav-links { gap: 1.5rem; }
-      .home-main { grid-template-columns: 1fr; padding: 1.5rem; gap: 2rem; overflow-y: auto; }
+
+      .home-main {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1.5rem 0;
+        gap: 1.5rem; overflow-y: auto;
+      }
       .hero-right { justify-content: flex-start; }
-      .photo-frame { width: 200px; height: 270px; }
+      .photo-frame { width: 210px; height: 280px; }
       .counter-block { position: static; margin-top: 1.5rem; }
       .vert-rule { display: none; }
+
       .social-bar { padding: 0 1.5rem; }
-      .soc-feed { grid-template-columns: 1fr; }
-      .feed-item { border-right: none; border-bottom: 1px solid var(--border2); }
-      #page-about, #page-projects { padding: 1.5rem; }
+      .soc-feed { grid-template-columns: 1fr 1fr; }
+      .feed-item:nth-child(2) { border-right: none; }
+      .feed-item:nth-child(3) { border-top: 1px solid var(--border2); }
+      .feed-item:nth-child(4) { border-top: 1px solid var(--border2); border-right: none; }
+
+      #page-about  { padding: 1.5rem; }
+      #page-projects { padding: 1.5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .proj-grid { grid-template-columns: 1fr; }
+      .proj-grid  { grid-template-columns: 1fr; }
+      .proj-card  { border-right: none; border-bottom: 1px solid var(--border); }
+      .proj-card:last-child { border-bottom: none; }
       .pg-dots { display: none; }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      .lightning-1, .lightning-2, .lightning-3 { animation: none; }
-      .page { transition: opacity 0.2s; }
+      .bolt-1, .bolt-2, .bolt-3,
+      .logo-pip, .avail-dot { animation: none; opacity: 1; }
+      .page { transition: opacity 0.15s; }
     }
   </style>
 </head>
 <body>
 
-  <!-- BACKGROUND -->
-  <div class="bg-layer"></div>
-  <div class="lightning lightning-1"></div>
-  <div class="lightning lightning-2"></div>
-  <div class="lightning lightning-3"></div>
+  <!-- BACKGROUND SCENE -->
+  <div class="bg-scene"></div>
+  <div class="bolt bolt-1"></div>
+  <div class="bolt bolt-2"></div>
+  <div class="bolt bolt-3"></div>
 
   <!-- NAV -->
   <nav>
     <span class="nav-logo">
-      <span class="nav-logo-dot"></span>
+      <span class="logo-pip"></span>
       Portfolio
     </span>
     <ul class="nav-links">
@@ -593,13 +688,13 @@
 
   <!-- PAGE DOTS -->
   <div class="pg-dots">
-    <div class="pg-dot active" data-label="Home"     onclick="goTo('home')"></div>
-    <div class="pg-dot"        data-label="About"    onclick="goTo('about')"></div>
-    <div class="pg-dot"        data-label="Projects" onclick="goTo('projects')"></div>
-    <div class="pg-dot"        data-label="Contact"  onclick="goTo('contact')"></div>
+    <div class="pg-dot active"  data-label="Home"     onclick="goTo('home')"></div>
+    <div class="pg-dot"         data-label="About"    onclick="goTo('about')"></div>
+    <div class="pg-dot"         data-label="Projects" onclick="goTo('projects')"></div>
+    <div class="pg-dot"         data-label="Contact"  onclick="goTo('contact')"></div>
   </div>
 
-  <!-- PAGES -->
+  <!-- ═══════════ PAGES ═══════════ -->
   <div class="pages">
 
     <!-- ═══ HOME ═══ -->
@@ -608,35 +703,61 @@
 
         <!-- LEFT -->
         <div class="hero-left">
-          <div class="hero-available anim a1">
+          <div class="available-badge anim a1">
             <span class="avail-dot"></span>
             Available for work
           </div>
+
           <h1 class="hero-name anim a2">
-            Revaldi<br><span>Alzikri</span>
+            Revaldi<br>
+            <span class="name-accent">Alzikri</span>
           </h1>
-          <p class="hero-role anim a3">Network Support</p>
-          <p class="hero-desc anim a4">
-            Turning operational data into clear stories, structured insights, and meaningful decisions.
-            Based in West Sumatra — building work that connects process, people, and performance.
+
+          <p class="hero-role anim a3">
+            <span class="role-line"></span>
+            Network Support
           </p>
+
+          <p class="hero-desc anim a4">
+            Turning operational data into clear stories, structured insights,
+            and meaningful decisions. Based in West Sumatra — building work
+            that connects process, people, and performance.
+          </p>
+
           <button class="btn-contact anim a5" onclick="goTo('contact')">Contact</button>
         </div>
 
         <!-- RIGHT -->
         <div class="hero-right">
+
+          <!-- PHOTO FRAME — properly closed -->
           <div class="photo-frame anim a3">
+            <span class="corner corner-tl"></span>
+            <span class="corner corner-tr"></span>
+            <span class="corner corner-bl"></span>
+            <span class="corner corner-br"></span>
             <div class="photo-inner">
-                <img src="REVAL.png" alt="Revaldi Alzikri" />
+              <!-- Ganti dengan foto kamu: uncomment baris di bawah, hapus div placeholder -->
+              <img src="REVAL.png" alt="Revaldi Alzikri"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="photo-placeholder" style="display:none">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="40" cy="28" r="18" stroke="rgba(59,130,246,0.4)" stroke-width="1.5"/>
+                  <path d="M8 72c0-17.7 14.3-32 32-32s32 14.3 32 32"
+                        stroke="rgba(59,130,246,0.4)" stroke-width="1.5"/>
+                </svg>
+              </div>
+            </div>
+            <!-- glow sits OUTSIDE photo-inner, INSIDE photo-frame -->
             <div class="photo-glow"></div>
           </div>
+          <!-- /photo-frame -->
 
+          <!-- COUNTER — sibling of photo-frame, both inside hero-right -->
           <div class="counter-block anim a4">
-            <div>
-              <span class="counter-num" id="counter-num">01</span>
-              <span class="counter-total"> / 04</span>
-            </div>
-            <button class="view-link" onclick="goTo('projects')">View Profile →</button>
+            <span class="counter-num" id="counter-num">01</span>
+            <span class="counter-sep">/ 04</span>
+            <button class="view-btn" onclick="goTo('projects')">View Profile →</button>
             <div class="arr-group">
               <button class="arr" onclick="prevPage()" aria-label="Previous">&#8249;</button>
               <button class="arr" onclick="nextPage()" aria-label="Next">&#8250;</button>
@@ -645,79 +766,91 @@
 
           <div class="vert-rule"></div>
         </div>
+        <!-- /hero-right -->
+
       </div>
+      <!-- /home-main -->
 
       <!-- SOCIAL BAR -->
       <div class="social-bar">
         <div class="soc-tabs">
           <span class="soc-label">Social</span>
-          <button class="soc-btn active" onclick="switchTab(this,'instagram')">Instagram</button>
-          <button class="soc-btn" onclick="switchTab(this,'linkedin')">LinkedIn</button>
-          <button class="soc-btn" onclick="switchTab(this,'gmail')">Gmail</button>
-          <button class="soc-btn" onclick="switchTab(this,'whatsapp')">WhatsApp</button>
+          <button class="soc-btn active"  onclick="highlightTab(this,'instagram')">Instagram</button>
+          <button class="soc-btn"         onclick="highlightTab(this,'linkedin')">LinkedIn</button>
+          <button class="soc-btn"         onclick="highlightTab(this,'gmail')">Gmail</button>
+          <button class="soc-btn"         onclick="highlightTab(this,'whatsapp')">WhatsApp</button>
         </div>
+        <!-- All 4 columns always visible; tab click dims the others -->
         <div class="soc-feed">
-          <div class="feed-item active" data-platform="instagram">
+          <div class="feed-item" data-platform="instagram">
             <p class="feed-meta"><strong>@valthermop</strong> · Instagram</p>
             <p class="feed-text">Connect with me on Instagram to know more about my social life.</p>
             <a href="https://www.instagram.com/valthermop" target="_blank" class="feed-link">Visit Instagram</a>
           </div>
-          <div class="feed-item" data-platform="linkedin">
+          <div class="feed-item dimmed" data-platform="linkedin">
             <p class="feed-meta"><strong>Revaldi Alzikri</strong> · LinkedIn</p>
             <p class="feed-text">Let's connect on LinkedIn to explore my work experience and professional journey.</p>
             <a href="https://www.linkedin.com/in/revaldialzikri" target="_blank" class="feed-link">Visit LinkedIn</a>
           </div>
-          <div class="feed-item" data-platform="gmail">
+          <div class="feed-item dimmed" data-platform="gmail">
             <p class="feed-meta"><strong>revaldialzikri2405@gmail.com</strong> · Gmail</p>
-            <p class="feed-text">Reach me by email. I will reply as soon as possible.</p>
+            <p class="feed-text">Reach me by email. I'll reply as soon as possible.</p>
             <a href="mailto:revaldialzikri2405@gmail.com" class="feed-link">Send Email</a>
           </div>
-          <div class="feed-item" data-platform="whatsapp">
+          <div class="feed-item dimmed" data-platform="whatsapp">
             <p class="feed-meta"><strong>Revaldi Alzikri</strong> · WhatsApp</p>
             <p class="feed-text">Chat with me directly through WhatsApp for quick communication.</p>
             <a href="https://wa.me/6287765329174" target="_blank" class="feed-link">Chat on WhatsApp</a>
           </div>
         </div>
       </div>
+
     </div>
+    <!-- /page-home -->
 
     <!-- ═══ ABOUT ═══ -->
     <div class="page" id="page-about">
       <p class="eyebrow anim a1">Who I am</p>
-      <h2 class="sec-title anim a2">Guiding process with clarity &amp; purpose</h2>
+      <h2 class="sec-title anim a2">Guiding process with<br>clarity &amp; purpose</h2>
       <div class="about-grid">
         <div>
           <p class="about-p anim a3">
-            I'm a Network Support professional with a growing interest in data, reporting, and training.
-            My work connects people, operations, and performance — helping daily processes become clearer,
-            more structured, and easier to understand.
+            I'm a Network Support professional with a growing interest in data, reporting,
+            and training. My work connects people, operations, and performance — helping
+            daily processes become clearer, more structured, and easier to understand.
           </p>
-          <p class="about-p anim a4" style="margin-top:1rem">
-            Through outlet monitoring, team support, report preparation, and continuous learning in Excel and Power BI,
-            I aim to create work that is not only accurate, but also useful, thoughtful, and easy to follow.
+          <p class="about-p anim a4">
+            Through outlet monitoring, team support, report preparation, and continuous
+            learning in Excel and Power BI, I aim to create work that is not only accurate,
+            but also useful, thoughtful, and easy to follow.
           </p>
         </div>
         <div class="skills-block anim a3">
-          <p class="skills-label">Core disciplines</p>
+          <p class="skills-eyebrow">Core disciplines</p>
           <div class="skill-row">
             <span class="skill-name">Network Support</span>
             <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+            <span class="skill-pct">88%</span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Reporting</span>
             <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+            <span class="skill-pct">82%</span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Training</span>
             <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+            <span class="skill-pct">75%</span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Data Analysis</span>
             <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+            <span class="skill-pct">70%</span>
           </div>
           <div class="skill-row">
             <span class="skill-name">Excel / Power BI</span>
             <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+            <span class="skill-pct">78%</span>
           </div>
         </div>
       </div>
@@ -731,7 +864,10 @@
         <div class="proj-card">
           <span class="proj-num">01</span>
           <h3 class="proj-title">KPI Performance Dashboard</h3>
-          <p class="proj-desc">Interactive HTML dashboard for J&T Cargo Agent Padang — covering Regional Managers, PIC Network, and Sales Marketing with grade and incentive tiers.</p>
+          <p class="proj-desc">
+            Interactive HTML dashboard for J&amp;T Cargo Agent Padang — covering Regional Managers,
+            PIC Network, and Sales Marketing staff with grade and incentive tiers.
+          </p>
           <div class="proj-tags">
             <span class="tag">Data Viz</span>
             <span class="tag">HTML</span>
@@ -741,7 +877,10 @@
         <div class="proj-card">
           <span class="proj-num">02</span>
           <h3 class="proj-title">Admin Monitoring System</h3>
-          <p class="proj-desc">Check-in compliance dashboard across 27 outlets and 55 admins — with "Best Admin" ranking and multi-sheet Excel output.</p>
+          <p class="proj-desc">
+            Check-in compliance dashboard across 27 outlets and 55 admins — with
+            "Best Admin" ranking, jobdesk tracking, and multi-sheet Excel output.
+          </p>
           <div class="proj-tags">
             <span class="tag">Excel</span>
             <span class="tag">Python</span>
@@ -751,7 +890,10 @@
         <div class="proj-card">
           <span class="proj-num">03</span>
           <h3 class="proj-title">Petty Cash Reconciliation</h3>
-          <p class="proj-desc">Financial reconciliation tool comparing overload data vs. official reports, surfacing discrepancies in courier payment records using Python/pandas.</p>
+          <p class="proj-desc">
+            Financial reconciliation tool comparing overload data vs. official reports,
+            surfacing discrepancies in courier payment records using Python and pandas.
+          </p>
           <div class="proj-tags">
             <span class="tag">Python</span>
             <span class="tag">Pandas</span>
@@ -764,23 +906,31 @@
     <!-- ═══ CONTACT ═══ -->
     <div class="page" id="page-contact">
       <div class="contact-bg"></div>
+      <div class="contact-ring ring-1"></div>
+      <div class="contact-ring ring-2"></div>
+      <div class="contact-ring ring-3"></div>
       <div class="con-inner">
         <p class="eyebrow anim a1" style="justify-content:center">Get in touch</p>
-        <h2 class="sec-title anim a2" style="max-width:100%;text-align:center">Let's work together</h2>
+        <h2 class="sec-title anim a2" style="max-width:100%;text-align:center">
+          Let's work together
+        </h2>
         <p class="con-sub anim a3">
           Open to freelance, collaboration, and full-time opportunities.
           Drop me a message and let's build something meaningful.
         </p>
-        <a href="mailto:revaldialzikri2405@gmail.com" class="btn-filled anim a4">Say hello</a>
+        <a href="mailto:revaldialzikri2405@gmail.com" class="btn-filled anim a4">
+          Say hello
+        </a>
         <div class="contact-links anim a5">
-          <a href="https://www.linkedin.com/in/revaldialzikri" target="_blank" class="contact-link">LinkedIn</a>
-          <a href="https://www.instagram.com/valthermop" target="_blank" class="contact-link">Instagram</a>
-          <a href="https://wa.me/6287765329174" target="_blank" class="contact-link">WhatsApp</a>
+          <a href="https://www.linkedin.com/in/revaldialzikri"  target="_blank" class="con-link">LinkedIn</a>
+          <a href="https://www.instagram.com/valthermop"        target="_blank" class="con-link">Instagram</a>
+          <a href="https://wa.me/6287765329174"                 target="_blank" class="con-link">WhatsApp</a>
         </div>
       </div>
     </div>
 
-  </div><!-- /pages -->
+  </div>
+  <!-- /pages -->
 
   <script>
     const pages = ['home','about','projects','contact'];
@@ -789,36 +939,42 @@
     function goTo(id) {
       const idx = pages.indexOf(id);
       if (idx < 0 || idx === current) return;
+
       document.getElementById('page-' + pages[current]).classList.remove('active');
       current = idx;
       document.getElementById('page-' + pages[current]).classList.add('active');
-      // nav
+
+      // nav buttons
       document.querySelectorAll('.nav-links button').forEach((btn, i) => {
         btn.classList.toggle('active', i === current);
       });
-      // dots
+      // page dots
       document.querySelectorAll('.pg-dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === current);
       });
       // counter
       const el = document.getElementById('counter-num');
-      if (el) el.textContent = String(current + 1).padStart(2,'0');
+      if (el) el.textContent = String(current + 1).padStart(2, '0');
     }
 
     function nextPage() { goTo(pages[(current + 1) % pages.length]); }
     function prevPage() { goTo(pages[(current - 1 + pages.length) % pages.length]); }
 
-    function switchTab(btn, platform) {
-      // update button state
+    // Social bar: highlight selected, dim others
+    function highlightTab(btn, platform) {
       document.querySelectorAll('.soc-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      // show/hide feed items
+
       document.querySelectorAll('.feed-item').forEach(item => {
-        item.classList.toggle('active', item.dataset.platform === platform);
+        if (item.dataset.platform === platform) {
+          item.classList.remove('dimmed');
+        } else {
+          item.classList.add('dimmed');
+        }
       });
     }
 
-    // keyboard navigation
+    // Keyboard navigation
     document.addEventListener('keydown', e => {
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextPage();
       if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prevPage();
